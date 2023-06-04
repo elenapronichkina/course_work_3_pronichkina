@@ -3,7 +3,9 @@ def read_json():
     читает файл json и возвращает его содержимое
     return: данные, список словарей
     """
-    pass
+    with open("operations.json", encoding="windows-1251") as f:
+        data = json.load(f)
+    return data
 
 def sort_data(data):
     """
