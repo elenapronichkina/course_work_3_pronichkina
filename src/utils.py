@@ -8,13 +8,18 @@ def read_json(file_path):
         data = json.load(f)
     return data
 
-def sort_data(data):
+def sort_data(data: list[dict]) -> list[dict]:
     """
     сортирует данные по статусу операции
     :param data: исходные данные
     :return: отсортированные данные
     """
-    pass
+    sorted_data = []
+    for operation in data:
+        if operation['state'] == 'EXECUTED':
+            sorted_data.append(operation)
+
+    return sorted_data
 
 def mask_card_number(card_number):
     """

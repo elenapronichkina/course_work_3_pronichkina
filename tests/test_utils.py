@@ -1,4 +1,4 @@
-from src.utils import read_json
+from src.utils import read_json, sort_data
 
 
 def test_read_json(path_to_test_json, expected_result_read_json_test):
