@@ -1,4 +1,5 @@
 import json
+import datetime
 def read_json(file_path):
     """
     читает файл json и возвращает его содержимое
@@ -71,11 +72,12 @@ def mask_account_number(account_number):
 #     сортирует данные по дате операции
 #     :param date: дата операции
 #     :return: отсортированные данные'''
-# #     data.sort(key=lambda x: x['date'], reversed=True)
-# #     return data
-# #     sorted_data_for_date = []
-# #     for operation in data:
-# #         ...
-# #         return sorted_data_for_date
+#      data.sort(key=lambda x: x['date'], reversed=True)
+#      return data
+#      sorted_data_for_date = []
+#       for operation in data:
+#         #operation['date']
+#         sorted_data_for_date.append(operation)
+#         return sorted_data_for_date
 #     pass
 #

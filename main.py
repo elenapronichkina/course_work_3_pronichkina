@@ -1,16 +1,35 @@
-# This is a sample Python script.
+from src.utils import read_json, sort_data, sort_data_by_date, mask_card_number, mask_account_number
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    #прочитать данные
+    read_json()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    #отсортировать данные по статусу
+    sort_data()
+
+    # отсортированные по статусу данные (sorted_data []) отсортировать по дате
+    sort_data_by_date()
+
+    #взять последние 5 операций:
+    latest_operations = sort_data_by_date [-5:-1]
+
+    for operations in latest_operations:
+        date = operation["date"]
+        description = operation["description"]
+        card_number = operation["from"]
+        account_number = operation["to"]
+        amount = operation["operationAmount"]["amount"]
+        currency = operation["operationAmount"]["currency"]["name"]
+
+        #привести дату к формату ДД.ММ.ГГГГ
+        date_for_print = modify_date(date)
+
+        #маскировка номера карты (откуда)
+        operation_from = mask_card_number(card_number)
+
+        #маскировка номера счета (куда)
+        operation_to = mask_account_number(account_number)
+
+#    print(< дата перевода > < описание перевода > < откуда > -> < куда > < сумма перевода > < валюта > "\n")
+        print(f"{date_for_print}, {description}, {operation_from}, '->', {operation_to}, {amount}, {currency} \n")
+

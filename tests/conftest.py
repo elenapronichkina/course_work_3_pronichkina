@@ -153,3 +153,14 @@ def expected_result_for_sort():
         "to": "Счет 64686473678894779589"
       }
       ]
+
+# @pytest.fixture
+# def date_for_modify():
+#     return ("2019-08-26T10:50:58.294041")
+#
+# @pytest.fixture
+# def expected_result_for_date():
+#     return ("26.08.2019")
+
+
+
