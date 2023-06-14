@@ -1,4 +1,6 @@
 import json
+from main import latest_operations
+
 
 def read_json(file_path):
     """
@@ -8,6 +10,7 @@ def read_json(file_path):
     with open(file_path, encoding="utf-8") as f:
         data = json.load(f)
     return data
+
 
 def sort_data(data: list[dict]) -> list[dict]:
     """
@@ -21,6 +24,7 @@ def sort_data(data: list[dict]) -> list[dict]:
             sorted_data.append(operation)
 
     return sorted_data
+
 
 def mask_card_number(card_number):
     """
@@ -39,6 +43,7 @@ def mask_account_number(account_number):
     """
     return f"**{account_number[-4:]}"
 
+
 def modify_date(date):
     """
     меняет формат даты
@@ -49,6 +54,7 @@ def modify_date(date):
     list_date = new_date.split("-")
     return f"{list_date[2]}.{list_date[1]}.{list_date[0]}"
 
+
 def sort_data_by_date(data):
     '''
     сортирует данные по дате операции
@@ -58,15 +64,16 @@ def sort_data_by_date(data):
     data.sort(key=lambda x: x['date'], reverse=True)
     return data
 
+
 def print_message_to_user(latest_operations):
-     """
-     выводит на экран список из 5 последних выполненных клиентом операций в формате:
-    <дата перевода> <описание перевода>
-    <откуда> -> <куда>
-    <сумма перевода> <валюта>
-     :param latest_operations:
-     :return:
-     """
+    """
+    выводит на экран список из 5 последних выполненных клиентом операций в формате:
+   <дата перевода> <описание перевода>
+   <откуда> -> <куда>
+   <сумма перевода> <валюта>
+    :param latest_operations: данные по пяти последним операциям
+    :return: сообщение для пользователя
+    """
     messages = []
     for operation in latest_operations:
 
@@ -89,9 +96,9 @@ def print_message_to_user(latest_operations):
             operation_from = mask_card_number(card_number[-16:])
             card_name = card_number[:-17]
 
-        operation_to = mask_account_number(account_number[-20:])
+    operation_to = mask_account_number(account_number[-20:])
 
-        messages.append(
-            f"{date_for_print} {description}\n{card_name} {operation_from} -> Счет {operation_to}\n{amount} {currency}")
+    messages.append(
+    f"{date_for_print} {description}\n{card_name} {operation_from} -> Счет {operation_to}\n{amount} {currency}")
 
     return messages
