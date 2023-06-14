@@ -1,16 +1,16 @@
-# This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from src.utils import read_json, sort_data, sort_data_by_date, print_message_to_user
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    raw_data = read_json('src/operations.json')
+
+    sorted_data = sort_data(raw_data)
+
+    date_sorted_data = sort_data_by_date(sorted_data)
+
+    latest_operations = date_sorted_data[:5]
+
+    for message in print_message_to_user(latest_operations):
+        print(message, end='\n\n')
+
